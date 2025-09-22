@@ -8,21 +8,9 @@ Exercises
 4. How could you create a computer player?
 """
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-"""Tic Tac Toe  
- Exercises  
- 1. Give the X and O a different color and width.  
- 2. What happens when someone taps a taken spot?  
- 3. How would you detect when someone has won?  
- 4. How could you create a computer player?  
-"""
+from turtle import Turtle, color, pensize, up, goto, down, circle, \
+    update, onscreenclick, setup, hideturtle, tracer, done
 
->>>>>>> A01770834
-=======
->>>>>>> A01708922
-from turtle import *
 from freegames import line
 
 
@@ -36,22 +24,18 @@ def grid():
 
 def drawx(x, y):
     """Draw X player centered, bigger and red."""
-<<<<<<< HEAD
-<<<<<<< HEAD
-    color('red')  #Cambié color a rojo
-    pensize(5)    #Engrosar el trazo para mejor visibilidad
-    offset = 20   #Offset para centrar el símbolo dentro del cuadro
-=======
-    color('red')  # Cambié color a rojo
-    pensize(5)    # Engrosar el trazo para mejor visibilidad
-    offset = 20   # Offset para centrar el símbolo dentro del cuadro
->>>>>>> A01770834
-=======
-    color('red')  # Cambié color a rojo
-    pensize(5)    # Engrosar el trazo para mejor visibilidad
-    offset = 20   # Offset para centrar el símbolo dentro del cuadro
->>>>>>> A01708922
 
+    color('red')  # Cambié color a rojo
+    pensize(5)    # Engrosar el trazo para mejor visibilidad
+    offset = 20   # Offset para centrar el símbolo dentro del cuadro
+
+    color('red')  # Cambié color a rojo
+    pensize(5)    # Engrosar el trazo para mejor visibilidad
+    offset = 20   # Offset para centrar el símbolo dentro del cuadro
+
+    color('red')  # Cambié color a rojo
+    pensize(5)    # Engrosar el trazo para mejor visibilidad
+    offset = 20   # Offset para centrar el símbolo dentro del cuadro
     # Líneas ajustadas para que la X quede centrada
     line(x + offset, y + offset, x + 133 - offset, y + 133 - offset)
     line(x + offset, y + 133 - offset, x + 133 - offset, y + offset)
@@ -60,30 +44,27 @@ def drawx(x, y):
 def drawo(x, y):
     """Draw O player centered, bigger and blue."""
     color('blue')  # Cambié color a azul
-<<<<<<< HEAD
-<<<<<<< HEAD
-    pensize(5)     #Engrosar el trazo
-    up()
-    #Ajustar posición inicial para centrar el círculo en la casilla
-    goto(x + 133/2, y + 20)
-    down()
-    circle(46)  #Cambié el radio del círculo para que quede centrado y más grande
-=======
+
     pensize(5)     # Engrosar el trazo
     up()
     # Ajustar posición inicial para centrar el círculo en la casilla
     goto(x + 133/2, y + 20)
     down()
-    circle(46)  # Cambié el radio del círculo para que quede centrado y más grande
->>>>>>> A01770834
-=======
+    circle(46)  # El radio del círculo para que quede centrado y más grande
+
     pensize(5)     # Engrosar el trazo
     up()
     # Ajustar posición inicial para centrar el círculo en la casilla
     goto(x + 133/2, y + 20)
     down()
-    circle(46)  # Cambié el radio del círculo para que quede centrado y más grande
->>>>>>> A01708922
+    circle(46)  # El radio del círculo para que quede centrado y más grande
+
+    pensize(5)     # Engrosar el trazo
+    up()
+    # Ajustar posición inicial para centrar el círculo en la casilla
+    goto(x + 133/2, y + 20)
+    down()
+    circle(46)  # El radio del círculo para que quede centrado y más grande
 
 
 def floor(value):
@@ -96,9 +77,11 @@ def floor(value):
 # Creamos una estructura para almacenar casillas ocupadas
 occupied = {}
 
+
 def is_occupied(x, y):
     """Revisar si la casilla ya está ocupada."""
     return (x, y) in occupied
+
 
 def mark_occupied(x, y, player):
     """Marcar una casilla como ocupada por un jugador."""
@@ -109,7 +92,7 @@ def mark_occupied(x, y, player):
 state = {'player': 0}
 players = [drawx, drawo]
 
-# ===================== AGREGADO: detección de fin de juego =====================
+# ==================== AGREGADO: detección de fin de juego ====================
 # Tablero lógico 3x3: None (vacío), 0 (X), 1 (O)
 board = [[None, None, None],
          [None, None, None],
@@ -121,11 +104,13 @@ writer.up()
 writer.goto(0, 185)
 writer.color('black')
 
+
 def rc_from_xy(x, y):
-    """AGREGADO: convertir coordenadas (x,y) 'floor' a índices fila/col 0..2."""
+    """AGREGADO: convertir coordenadas (x,y) 'floor' a índices"""
     c = int((x + 200) // 133)  # columna
     r = int((y + 200) // 133)  # fila
     return r, c
+
 
 def check_winner():
     """AGREGADO: devuelve 0 si gana X, 1 si gana O, None si no hay ganador."""
@@ -143,13 +128,15 @@ def check_winner():
             return p
     return None
 
+
 def board_full():
     """AGREGADO: True si el tablero está completo (empate)."""
     return all(cell is not None for row in board for cell in row)
 
+
 # Estado extra para saber si el juego terminó
 state['game_over'] = False
-# =================== FIN AGREGADO: detección de fin de juego ===================
+# ================= FIN AGREGADO: detección de fin de juego ================
 
 
 def tap(x, y):
@@ -161,16 +148,13 @@ def tap(x, y):
     x = floor(x)
     y = floor(y)
 
-<<<<<<< HEAD
-    #  Validación agregada
+# Validación agregada
     if is_occupied(x, y):
         print("️ Casilla ocupada, intenta en otra.")  # Solo mensaje en consola
         return
-=======
+
     # AGREGADO: obtener índices en el tablero lógico
     r, c = rc_from_xy(x, y)
->>>>>>> A01708922
-
     player = state['player']
     draw = players[player]
     draw(x, y)
@@ -208,13 +192,7 @@ tracer(False)
 grid()
 update()
 onscreenclick(tap)
-<<<<<<< HEAD
-done()
-<<<<<<< HEAD
-=======
+
 done()
 
->>>>>>> A01770834
-=======
-
->>>>>>> A01708922
+done()
