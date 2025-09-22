@@ -9,7 +9,6 @@ Exercises
 """
 
 from turtle import *
-
 from freegames import line
 
 
@@ -22,17 +21,25 @@ def grid():
 
 
 def drawx(x, y):
-    """Draw X player."""
-    line(x, y, x + 133, y + 133)
-    line(x, y + 133, x + 133, y)
+    """Draw X player centered, bigger and red."""
+    color('red')  #Cambié color a rojo
+    pensize(5)    #Engrosar el trazo para mejor visibilidad
+    offset = 20   #Offset para centrar el símbolo dentro del cuadro
+
+    # Líneas ajustadas para que la X quede centrada
+    line(x + offset, y + offset, x + 133 - offset, y + 133 - offset)
+    line(x + offset, y + 133 - offset, x + 133 - offset, y + offset)
 
 
 def drawo(x, y):
-    """Draw O player."""
+    """Draw O player centered, bigger and blue."""
+    color('blue')  # Cambié color a azul
+    pensize(5)     #Engrosar el trazo
     up()
-    goto(x + 67, y + 5)
+    #Ajustar posición inicial para centrar el círculo en la casilla
+    goto(x + 133/2, y + 20)
     down()
-    circle(62)
+    circle(46)  #Cambié el radio del círculo para que quede centrado y más grande
 
 
 def floor(value):
